@@ -14,7 +14,7 @@
 // - Receipt
 
 class ATM {
-  constructor(userName, accountBalance = 100) {
+  constructor(userName, accountBalance = 1) {
     this.userName = userName;
     this.accountBalance = accountBalance;
   }
@@ -44,25 +44,16 @@ class ATM {
   }
 }
 
-// let dakotah = new ATM("dakotah");
-
-// dakotah.currentAmount();
-// dakotah.deposit(5);
-// dakotah.withdraw(50);
-// dakotah.deposit(1);
-// dakotah.withdraw(75);
-
 let useAtm = () => {
   let userName = window.prompt("What is your name? ");
 
   let currentUser = new ATM(userName);
 
-  let numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
   let running = true;
   while (running) {
     let userSelection = window.prompt(`
-    welcome!
-    *****************
+         welcome to the atm!
+    ******************************
     Please select from below...
     
     [D] deposit
@@ -72,15 +63,17 @@ let useAtm = () => {
     `);
 
     if (userSelection === "D" || userSelection === "d") {
-      addAmount = Number(window.prompt("Enter a deposit amount: "));
-      // if (Number.isInteger(addAmount) === True) {
-      currentUser.deposit(addAmount);
-      // } else {
-      //   window.alert`Please enter a number`;
-      // }
+      if ((addAmount = +window.prompt("Enter a deposit amount: "))) {
+        currentUser.deposit(addAmount);
+      } else {
+        window.alert`Please enter a number`;
+      }
     } else if (userSelection === "W" || userSelection === "w") {
-      subAmount = Number(window.prompt("Enter a withdrawal amount: "));
-      currentUser.withdraw(subAmount);
+      if ((subAmount = +window.prompt("Enter a withdrawal amount: "))) {
+        currentUser.withdraw(subAmount);
+      } else {
+        window.alert`Please enter a number`;
+      }
     } else if (userSelection === "B" || userSelection === "b") {
       currentUser.currentAmount();
     } else if (userSelection === "Q" || userSelection === "q") {
